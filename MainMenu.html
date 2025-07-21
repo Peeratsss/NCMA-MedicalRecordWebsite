@@ -201,14 +201,13 @@
 
       // Hide the content initially if the placeholder is selected
       if (selection === "placeholder") {
-        menuContainer.classList.remove("top-layout");
-        contentContainer.style.display = "none"; // Hide the content container when placeholder is selected
-        content.style.display = "none";  // Hide the content text box as well
+        contentContainer.style.display = "none";  // Hide content when placeholder is selected
+        content.style.display = "block"; // Ensure the placeholder text remains visible
+        content.innerText = "Choose a category to view"; // Set the default text
       } else {
-        menuContainer.classList.add("top-layout");
         contentContainer.style.display = "grid"; // Show the content container when a valid category is selected
         content.style.display = "block";  // Ensure content is visible when a category is selected
-        content.innerText = `You have selected the ${selection} category.`;
+        content.innerText = `You have selected the ${selection} category.`; // Change the content
 
         // Set content text based on selection
         switch (selection) {
