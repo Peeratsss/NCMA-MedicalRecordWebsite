@@ -23,6 +23,10 @@
         <option value="Private">Private</option>
       </select>
 
+      <!-- Medicines Button -->
+      <button class="medicines-btn"><a href="medicine.html">Medicines</a></button>
+
+      <!-- Logout Button -->
       <button><a href="Login.html">Logout</a></button>
     </div>
   </div>
@@ -94,3 +98,129 @@
 
         const doctorImg = document.createElement("img");
         doctorImg.src = "nurse2.jpg"; // Ensure you have nurse2.jpg image
+        doctorImg.alt = "Doctor Image";
+        doctorImageDiv.appendChild(doctorImg);
+
+      } else if (selection === "ICU") {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
+        content.innerText = `Expert care, compassionate healing—our medical team is dedicated to your health around the clock. Trust skilled professionals who put your well-being first.`;
+        extraTextDiv.innerText = `Advanced treatment, personalized care—your health is our priority. Experience excellence in medical services with state-of-the-art facilities.`;
+
+        // ICU images (work1.jpg and work2.jpg)
+        const hospitalImg = document.createElement("img");
+        hospitalImg.src = "work1.jpg"; // Ensure you have work1.jpg image
+        hospitalImg.alt = "ICU Image";
+        hospitalImageDiv.appendChild(hospitalImg);
+
+        const doctorImg = document.createElement("img");
+        doctorImg.src = "work2.jpg"; // Ensure you have work2.jpg image
+        doctorImg.alt = "ICU Image";
+        doctorImageDiv.appendChild(doctorImg);
+
+      } else if (selection === "Pediatric") {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
+        content.innerText = `Expert care, compassionate healing—our pediatric team specializes in keeping children healthy and happy. From check-ups to treatments, we’re here for every milestone.`;
+        extraTextDiv.innerText = `A healing environment designed just for kids—where advanced medicine meets warmth and compassion. Because every child deserves the best care possible.`;
+
+        // Pediatric images (ped1.jpg and ped2.jpg)
+        const hospitalImg = document.createElement("img");
+        hospitalImg.src = "ped1.jpg"; // Ensure you have ped1.jpg image
+        hospitalImg.alt = "Pediatric Image";
+        hospitalImageDiv.appendChild(hospitalImg);
+
+        const doctorImg = document.createElement("img");
+        doctorImg.src = "ped2.jpg"; // Ensure you have ped2.jpg image
+        doctorImg.alt = "Pediatric Image";
+        doctorImageDiv.appendChild(doctorImg);
+
+      } else if (selection === "Infectious") {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
+        content.innerText = `Expert containment and compassionate care—our infectious disease team is trained to handle outbreaks with precision and safety. Your health and community protection are our top priorities.`;
+        extraTextDiv.innerText = `Advanced isolation protocols and cutting-edge treatment—we provide secure, specialized care for infectious conditions. Trust in our sterile environment and dedicated medical team for your recovery.`;
+
+        // Infectious images (inf1.jpg and inf2.jpg)
+        const hospitalImg = document.createElement("img");
+        hospitalImg.src = "inf1.jpg"; // Ensure you have inf1.jpg image
+        hospitalImg.alt = "Infectious Image";
+        hospitalImageDiv.appendChild(hospitalImg);
+
+        const doctorImg = document.createElement("img");
+        doctorImg.src = "inf2.jpg"; // Ensure you have inf2.jpg image
+        doctorImg.alt = "Infectious Image";
+        doctorImageDiv.appendChild(doctorImg);
+
+      } else if (selection === "Home") {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
+        content.innerText = `Welcome to Medical City Hospital!
+        Providing compassionate care with cutting-edge technology.
+        Your health and well-being are our top priorities.
+        Thank you for trusting us with your care.`;
+
+        extraTextDiv.innerText = "Our Doctors and Nurses at Medical City are the best at their fields.";
+
+        // Hospital image on top right
+        const hospitalImg = document.createElement("img");
+        hospitalImg.src = "Hospital1.jpg"; // Ensure you have Hospital1.jpg image
+        hospitalImg.alt = "Hospital Image";
+        hospitalImageDiv.appendChild(hospitalImg);
+
+        // Doctor image bottom right
+        const doctorImg = document.createElement("img");
+        doctorImg.src = "doc1.jpg"; // Ensure you have doc1.jpg image
+        doctorImg.alt = "Doctor Image";
+        doctorImageDiv.appendChild(doctorImg);
+
+      } else if (selection) {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
+        hospitalImageDiv.innerHTML = "";
+        doctorImageDiv.innerHTML = "";
+        extraTextDiv.innerText = "";
+        content.innerText = "";
+        imageContainer.style.display = "block";
+
+        let text = "";
+        let imageUrls = [];
+
+        switch (selection) {
+          case "ICU":
+            text = "ICU: Critical care and constant monitoring.";
+            imageUrls = ["https://via.placeholder.com/300x200.png?text=ICU"];
+            break;
+          case "Pediatric":
+            text = "Pediatric Ward: Care for infants, children, and teens.";
+            imageUrls = ["https://via.placeholder.com/300x200.png?text=Pediatric"];
+            break;
+          case "General":
+            text = "General Ward: Standard care and treatment.";
+            imageUrls = ["https://via.placeholder.com/300x200.png?text=General"];
+            break;
+          case "Private":
+            text = "Private Rooms: Comfortable and exclusive care.";
+            imageUrls = ["https://via.placeholder.com/300x200.png?text=Private"];
+            break;
+          default:
+            text = "Select a category";
+        }
+
+        content.innerText = text;
+        imageUrls.forEach((url) => {
+          const img = document.createElement("img");
+          img.src = url;
+          img.alt = selection;
+          categoryImages.appendChild(img);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
