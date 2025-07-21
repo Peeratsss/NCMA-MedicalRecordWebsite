@@ -3,8 +3,160 @@
 <head>
   <meta charset="UTF-8" />
   <title>Welcome!</title>
-  <!-- Link to external stylesheet -->
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Basic styles */
+    body {
+      background-color: rgba(128, 0, 128, 0.3); /* Updated background color */
+      font-family: Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: all 0.5s ease;
+    }
+
+    /* Menu container with shadow effect */
+    .menu-container {
+      width: 100%;
+      max-width: 400px;
+      padding: 25px 20px;
+      background-color: rgba(0, 0, 0, 0.1);
+      border: 1px solid black;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    /* Top layout */
+    .top-layout {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      max-width: 400px;
+      padding: 15px 20px;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    /* Dropdown and buttons styling */
+    .top-controls {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    button, select {
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background-color: #f0f0f0;
+    }
+
+    /* Medicines Button Custom Style */
+    .medicines-btn {
+      background-color: #4CAF50; /* Green background for the Medicines button */
+      color: white;
+    }
+
+    .medicines-btn a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .medicines-btn:hover {
+      background-color: #45a049; /* Darker green on hover */
+    }
+
+    /* Content container with grid layout */
+    #content-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 900px;
+      width: 90%;
+      height: 80%;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      padding: 20px;
+      display: none; /* Make it hidden initially */
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 20px;
+      color: #000;
+      font-size: 18px;
+      text-align: left;
+      transition: transform 0.5s ease;
+    }
+
+    /* Layout for content sections */
+    #content {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      white-space: pre-line;
+      align-self: center;
+    }
+
+    #hospital-image {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+      justify-self: center;
+    }
+
+    #hospital-image img {
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+
+    #extra-text {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      white-space: pre-line;
+      align-self: center;
+      justify-self: center;
+    }
+
+    #doctor-image {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      justify-self: center;
+      align-self: center;
+    }
+
+    #doctor-image img {
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+
+    /* Fallback container for other categories */
+    #image-container {
+      max-width: 300px;
+    }
+
+    #categoryImages img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      margin-bottom: 10px;
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <!-- Menu section -->
@@ -44,69 +196,68 @@
 
   <script>
     function updateContent() {
-  const selection = document.getElementById("mySelect").value;
-  const content = document.getElementById("content");
-  const menuContainer = document.getElementById("menuContainer");
-  const contentContainer = document.getElementById("content-container");
-  const hospitalImageDiv = document.getElementById("hospital-image");
-  const doctorImageDiv = document.getElementById("doctor-image");
-  const extraTextDiv = document.getElementById("extra-text");
-  const imageContainer = document.getElementById("image-container");
-  const categoryImages = document.getElementById("categoryImages");
+      const selection = document.getElementById("mySelect").value;
+      const content = document.getElementById("content");
+      const menuContainer = document.getElementById("menuContainer");
+      const contentContainer = document.getElementById("content-container");
+      const hospitalImageDiv = document.getElementById("hospital-image");
+      const doctorImageDiv = document.getElementById("doctor-image");
+      const extraTextDiv = document.getElementById("extra-text");
+      const imageContainer = document.getElementById("image-container");
+      const categoryImages = document.getElementById("categoryImages");
 
-  // Clear images and extra texts
-  hospitalImageDiv.innerHTML = "";
-  doctorImageDiv.innerHTML = "";
-  extraTextDiv.innerText = "";
-  categoryImages.innerHTML = "";
-  imageContainer.style.display = "none";
+      // Clear images and extra texts
+      hospitalImageDiv.innerHTML = "";
+      doctorImageDiv.innerHTML = "";
+      extraTextDiv.innerText = "";
+      categoryImages.innerHTML = "";
+      imageContainer.style.display = "none";
 
-  if (selection === "placeholder") {
-    menuContainer.classList.remove("top-layout");
-    contentContainer.style.display = "none"; // Hide the content container when placeholder is selected
-    content.innerText = "Choose a category to view";
-  } else {
-    menuContainer.classList.add("top-layout");
-    contentContainer.style.display = "grid"; // Show the content container when a valid category is selected
+      if (selection === "placeholder") {
+        menuContainer.classList.remove("top-layout");
+        contentContainer.style.display = "none"; // Hide the content container when placeholder is selected
+        content.innerText = "Choose a category to view";
+      } else {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid"; // Show the content container when a valid category is selected
 
-    // Set content text based on selection
-    switch (selection) {
-      case "Private":
-        content.innerText = `Experience premium healthcare in our private wards...`;
-        extraTextDiv.innerText = `Your health deserves the finest...`;
-        // Add images...
-        break;
-      case "General":
-        content.innerText = `Our General Ward is designed for your recovery...`;
-        extraTextDiv.innerText = `✔ 24/7 Expert Care – Skilled doctors...`;
-        // Add images...
-        break;
-      case "ICU":
-        content.innerText = `Expert care, compassionate healing...`;
-        extraTextDiv.innerText = `Advanced treatment, personalized care...`;
-        // Add images...
-        break;
-      case "Pediatric":
-        content.innerText = `Expert care, compassionate healing—our pediatric team specializes...`;
-        extraTextDiv.innerText = `A healing environment designed just for kids...`;
-        // Add images...
-        break;
-      case "Infectious":
-        content.innerText = `Expert containment and compassionate care...`;
-        extraTextDiv.innerText = `Advanced isolation protocols and cutting-edge treatment...`;
-        // Add images...
-        break;
-      case "Home":
-        content.innerText = `Welcome to Medical City Hospital! Providing compassionate care...`;
-        extraTextDiv.innerText = "Our Doctors and Nurses at Medical City are the best at their fields.";
-        // Add images...
-        break;
-      default:
-        content.innerText = "Select a category";
+        // Set content text based on selection
+        switch (selection) {
+          case "Private":
+            content.innerText = `Experience premium healthcare in our private wards...`;
+            extraTextDiv.innerText = `Your health deserves the finest...`;
+            // Add images...
+            break;
+          case "General":
+            content.innerText = `Our General Ward is designed for your recovery...`;
+            extraTextDiv.innerText = `✔ 24/7 Expert Care – Skilled doctors...`;
+            // Add images...
+            break;
+          case "ICU":
+            content.innerText = `Expert care, compassionate healing...`;
+            extraTextDiv.innerText = `Advanced treatment, personalized care...`;
+            // Add images...
+            break;
+          case "Pediatric":
+            content.innerText = `Expert care, compassionate healing—our pediatric team specializes...`;
+            extraTextDiv.innerText = `A healing environment designed just for kids...`;
+            // Add images...
+            break;
+          case "Infectious":
+            content.innerText = `Expert containment and compassionate care...`;
+            extraTextDiv.innerText = `Advanced isolation protocols and cutting-edge treatment...`;
+            // Add images...
+            break;
+          case "Home":
+            content.innerText = `Welcome to Medical City Hospital! Providing compassionate care...`;
+            extraTextDiv.innerText = "Our Doctors and Nurses at Medical City are the best at their fields.";
+            // Add images...
+            break;
+          default:
+            content.innerText = "Select a category";
+        }
+      }
     }
-  }
-}
-
   </script>
 </body>
 </html>
