@@ -171,7 +171,7 @@
 
   <!-- Content container -->
   <div id="content-container">
-    <div id="content">Choose a category to view</div>
+    <div id="content" style="display: none;">Choose a category to view</div>
     <div id="hospital-image"></div>
     <div id="extra-text"></div>
     <div id="doctor-image"></div>
@@ -182,70 +182,58 @@
 
   <script>
    function updateContent() {
-  const selection = document.getElementById("mySelect").value;
-  const content = document.getElementById("content");
-  const menuContainer = document.getElementById("menuContainer");
-  const contentContainer = document.getElementById("content-container");
-  const hospitalImageDiv = document.getElementById("hospital-image");
-  const doctorImageDiv = document.getElementById("doctor-image");
-  const extraTextDiv = document.getElementById("extra-text");
-  const imageContainer = document.getElementById("image-container");
-  const categoryImages = document.getElementById("categoryImages");
+    const selection = document.getElementById("mySelect").value;
+    const content = document.getElementById("content");
+    const menuContainer = document.getElementById("menuContainer");
+    const contentContainer = document.getElementById("content-container");
+    const hospitalImageDiv = document.getElementById("hospital-image");
+    const doctorImageDiv = document.getElementById("doctor-image");
+    const extraTextDiv = document.getElementById("extra-text");
+    const imageContainer = document.getElementById("image-container");
+    const categoryImages = document.getElementById("categoryImages");
 
-  // Clear images and extra texts
-  hospitalImageDiv.innerHTML = "";
-  doctorImageDiv.innerHTML = "";
-  extraTextDiv.innerText = "";
-  categoryImages.innerHTML = "";
-  imageContainer.style.display = "none";
+    // Clear images and extra texts
+    hospitalImageDiv.innerHTML = "";
+    doctorImageDiv.innerHTML = "";
+    extraTextDiv.innerText = "";
+    categoryImages.innerHTML = "";
+    imageContainer.style.display = "none";
 
-  if (selection === "placeholder") {
-    menuContainer.classList.remove("top-layout");
-    contentContainer.style.display = "none"; // Hide the content container when placeholder is selected
-    content.style.display = "none";  // Hide the content text box as well
-  } else {
-    menuContainer.classList.add("top-layout");
-    contentContainer.style.display = "grid"; // Show the content container when a valid category is selected
-    content.style.display = "block";  // Ensure content is visible when a category is selected
+    if (selection === "placeholder") {
+      menuContainer.classList.remove("top-layout");
+      contentContainer.style.display = "none"; // Hide the content container when placeholder is selected
+      content.style.display = "none";  // Hide the content text box as well
+    } else {
+      menuContainer.classList.add("top-layout");
+      contentContainer.style.display = "grid"; // Show the content container when a valid category is selected
+      content.style.display = "block";  // Ensure content is visible when a category is selected
+      content.innerText = `You have selected the ${selection} category.`;
 
-    // Set content text based on selection
-    switch (selection) {
-      case "Private":
-        content.innerText = `Experience premium healthcare in our private wards...`;
-        extraTextDiv.innerText = `Your health deserves the finest...`;
-        // Add images...
-        break;
-      case "General":
-        content.innerText = `Our General Ward is designed for your recovery...`;
-        extraTextDiv.innerText = `✔ 24/7 Expert Care – Skilled doctors...`;
-        // Add images...
-        break;
-      case "ICU":
-        content.innerText = `Expert care, compassionate healing...`;
-        extraTextDiv.innerText = `Advanced treatment, personalized care...`;
-        // Add images...
-        break;
-      case "Pediatric":
-        content.innerText = `Expert care, compassionate healing—our pediatric team specializes...`;
-        extraTextDiv.innerText = `A healing environment designed just for kids...`;
-        // Add images...
-        break;
-      case "Infectious":
-        content.innerText = `Expert containment and compassionate care...`;
-        extraTextDiv.innerText = `Advanced isolation protocols and cutting-edge treatment...`;
-        // Add images...
-        break;
-      case "Home":
-        content.innerText = `Welcome to Medical City Hospital! Providing compassionate care...`;
-        extraTextDiv.innerText = "Our Doctors and Nurses at Medical City are the best at their fields.";
-        // Add images...
-        break;
-      default:
-        content.innerText = "Select a category";
+      // Set content text based on selection
+      switch (selection) {
+        case "Private":
+          extraTextDiv.innerText = `Your health deserves the finest care...`;
+          break;
+        case "General":
+          extraTextDiv.innerText = `✔ 24/7 Expert Care – Skilled doctors...`;
+          break;
+        case "ICU":
+          extraTextDiv.innerText = `Advanced treatment, personalized care...`;
+          break;
+        case "Pediatric":
+          extraTextDiv.innerText = `A healing environment designed just for kids...`;
+          break;
+        case "Infectious":
+          extraTextDiv.innerText = `Advanced isolation protocols and cutting-edge treatment...`;
+          break;
+        case "Home":
+          extraTextDiv.innerText = "Our Doctors and Nurses at Medical City are the best at their fields.";
+          break;
+        default:
+          content.innerText = "Select a category";
+      }
     }
   }
-}
-
   </script>
 </body>
 </html>
