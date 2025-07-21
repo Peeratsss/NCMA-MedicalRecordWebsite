@@ -1,6 +1,6 @@
 /* Basic styles */
 body {
-  background-color: rgba(128, 0, 128, 0.3);
+  background-color: rgba(128, 0, 128, 0.3); /* Updated background color */
   font-family: Arial, sans-serif;
   margin: 0;
   min-height: 100vh;
@@ -85,7 +85,7 @@ button, select {
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
   padding: 20px;
-  display: none;
+  display: none; /* Make it hidden initially */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
