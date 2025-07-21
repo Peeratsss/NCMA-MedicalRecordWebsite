@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Medicine List with Search & Add</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    input[type="text"], textarea {
+      width: 300px;
+      padding: 8px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      display: block;
+    }
+    button {
+      padding: 8px 16px;
+      font-size: 16px;
+      background-color: #6a1b9a;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    button:hover {
+      background-color: #4a0f72;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background-color: #6a1b9a;
+      color: white;
+      position: sticky;
+      top: 0;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    #searchInput {
+      width: 50%;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Medicine List</h1>
+  
+  <input type="text" id="searchInput" placeholder="Search Medicine Name..." onkeyup="filterTable()" />
+
+  <textarea id="addInput" rows="3" placeholder="Add medicine with format: Name  Generic/Brand  Dosage  Considerations (tab separated)"></textarea>
+  <button onclick="addMedicine()">Add Medicine</button>
+
+  <table id="medicineTable">
+    <thead>
+      <tr>
+        <th>Medicine Name</th>
+        <th>Generic Name / Brand Name</th>
+        <th>Dosage</th>
+        <th>Considerations when taking</th>
+      </tr>
+    </thead>
+    <tbody id="medicineBody">
+      <!-- Initial data rows -->
+      <tr><td>Paracetamol</td><td>Acetaminophen / Tylenol</td><td>500mg every 4-6 hours</td><td>Avoid alcohol, don't exceed 4g/day. Can cause liver damage.</td></tr>
+      <tr><td>Ibuprofen</td><td>Advil / Motrin</td><td>200-400mg every 4-6 hours</td><td>Take with food to avoid stomach irritation. Do not exceed 1200mg per day without doctor's advice.</td></tr>
+      <tr><td>Amoxicillin</td><td>Amoxil / Trimox</td><td>250-500mg every 8 hours</td><td>Complete the full course, even if you feel better. May cause gastrointestinal upset.</td></tr>
+      <tr><td>Aspirin</td><td>Acetylsalicylic Acid / Bayer</td><td>81-325mg daily</td><td>Not recommended for children (can cause Reye's syndrome). Take with food to avoid stomach irritation.</td></tr>
+      <tr><td>Metformin</td><td>Glucophage</td><td>500mg twice daily</td><td>Take with meals to reduce stomach upset. Monitor blood sugar regularly. May cause gastrointestinal issues.</td></tr>
+      <tr><td>Loratadine</td><td>Claritin</td><td>10mg once daily</td><td>Avoid alcohol while taking. Can cause drowsiness in some people.</td></tr>
+      <tr><td>Lisinopril</td><td>Zestril / Prinivil</td><td>10-40mg daily</td><td>Take in the morning to avoid nighttime dizziness. May cause a dry cough or dizziness.</td></tr>
+      <tr><td>Omeprazole</td><td>Prilosec</td><td>20mg once daily</td><td>Take 30 minutes before a meal. Avoid taking with other acid-reducing medications unless prescribed.</td></tr>
+      <tr><td>Simvastatin</td><td>Zocor</td><td>20-40mg once daily</td><td>Take in the evening. Avoid grapefruit juice. May interact with other medications.</td></tr>
+      <tr><td>Diphenhydramine</td><td>Benadryl</td><td>25-50mg every 4-6 hours</td><td>Can cause drowsiness, avoid driving or operating heavy machinery. Avoid alcohol and other sedatives.</td></tr>
+      <tr><td>Fluoxetine</td><td>Prozac</td><td>20mg once daily</td><td>May cause drowsiness, take in the morning if it affects sleep. Avoid alcohol. Takes 4-6 weeks for full effect.</td></tr>
+      <tr><td>Hydrocodone</td><td>Vicodin / Norco</td><td>5-10mg every 4-6 hours</td><td>Use with caution due to risk of addiction and overdose. Take with food to prevent stomach upset.</td></tr>
+      <tr><td>Clopidogrel</td><td>Plavix</td><td>75mg once daily</td><td>Take with or without food. Do not stop without consulting your doctor, as it may increase the risk of blood clots.</td></tr>
+      <tr><td>Warfarin</td><td>Coumadin</td><td>2-10mg daily</td><td>Monitor INR levels regularly. Avoid foods high in Vitamin K. May interact with many medications.</td></tr>
+      <tr><td>Gabapentin</td><td>Neurontin</td><td>300mg three times a day</td><td>Take with food. May cause dizziness or drowsiness. Avoid alcohol.</td></tr>
+      <tr><td>Doxycycline</td><td>Vibramycin</td><td>100mg twice daily</td><td>Take with a full glass of water. Avoid exposure to sunlight, as this may cause skin sensitivity.</td></tr>
+      <tr><td>Prednisone</td><td>Deltasone</td><td>5-60mg daily</td><td>Take with food to avoid stomach upset. Don't stop suddenly, tapering may be required.</td></tr>
+      <tr><td>Ranitidine</td><td>Zantac</td><td>150mg twice daily</td><td>Can cause dizziness. Avoid smoking, alcohol, and spicy foods.</td></tr>
+      <tr><td>Ciprofloxacin</td><td>Cipro</td><td>500mg twice daily</td><td>Take with a full glass of water. Avoid taking with dairy products or calcium-rich foods.</td></tr>
+      <tr><td>Tramadol</td><td>Ultram</td><td>50mg every 4-6 hours</td><td>Risk of addiction and overdose. Use only as prescribed, avoid alcohol.</td></tr>
+      <tr><td>Allopurinol</td><td>Zyloprim</td><td>100mg once daily</td><td>Drink plenty of fluids. May cause rash or allergic reactions.</td></tr>
+      <tr><td>Metoprolol</td><td>Lopressor / Toprol</td><td>25-100mg daily</td><td>Take with food. Do not stop suddenly without consulting a doctor. Can cause dizziness.</td></tr>
+      <tr><td>Insulin</td><td>Novolin / Humulin</td><td>As prescribed by doctor</td><td>Inject subcutaneously. Blood sugar should be monitored regularly.</td></tr>
+      <tr><td>Cetirizine</td><td>Zyrtec</td><td>10mg once daily</td><td>May cause drowsiness in some people. Avoid alcohol.</td></tr>
+      <tr><td>Venlafaxine</td><td>Effexor</td><td>75mg once daily</td><td>Taper dose gradually when discontinuing. May cause increased blood pressure.</td></tr>
+      <tr><td>Loperamide</td><td>Imodium</td><td>2mg after each loose stool, max 8mg/day</td><td>Do not use if you have a fever or blood in stool.</td></tr>
+      <tr><td>Losartan</td><td>Cozaar</td><td>50mg daily</td><td>Can cause dizziness or a dry cough. Monitor blood pressure regularly.</td></tr>
+      <tr><td>Furosemide</td><td>Lasix</td><td>20-80mg once daily</td><td>May cause dizziness or low potassium. Drink plenty of fluids and avoid dehydration.</td></tr>
+      <tr><td>Tamsulosin</td><td>Flomax</td><td>0.4mg once daily</td><td>Take 30 minutes after the same meal each day. May cause dizziness, especially when standing up.</td></tr>
+      <tr><td>Clonazepam</td><td>Klonopin</td><td>0.25mg twice daily</td><td>Can cause drowsiness or dizziness. Avoid alcohol and operate machinery cautiously.</td></tr>
+      <tr><td>Ezetimibe</td><td>Zetia</td><td>10mg once daily</td><td>May cause stomach pain, muscle pain. Monitor cholesterol levels.</td></tr>
+      <tr><td>Valsartan</td><td>Diovan</td><td>80-320mg daily</td><td>Can cause dizziness, dry cough. Do not stop suddenly. Monitor blood pressure regularly.</td></tr>
+      <tr><td>Amlodipine</td><td>Norvasc</td><td>5-10mg daily</td><td>May cause swelling in the feet and ankles. Monitor blood pressure regularly.</td></tr>
+      <tr><td>Atorvastatin</td><td>Lipitor</td><td>10-80mg once daily</td><td>Take in the evening. Avoid grapefruit juice. May cause muscle pain.</td></tr>
+      <tr><td>Lorazepam</td><td>Ativan</td><td>1-2mg as needed</td><td>Can cause drowsiness, avoid alcohol. Use only as prescribed.</td></tr>
+      <tr><td>Azithromycin</td><td>Zithromax</td><td>500mg on the first day, 250mg for 4 more days</td><td>Take with or without food. Complete the full course.</td></tr>
+      <tr><td>Albuterol</td><td>Ventolin / Proventil</td><td>2 inhalations every 4-6 hours</td><td>Avoid overuse of inhalers. Can cause shaking or nervousness.</td></tr>
+      <tr><td>Methotrexate</td><td>Rheumatrex</td><td>7.5-25mg once a week</td><td>Monitor blood tests regularly. Avoid alcohol.</td></tr>
+      <tr><td>Hydrochlorothiazide</td><td>Microzide</td><td>12.5-50mg once daily</td><td>May cause dizziness. Take in the morning to avoid nighttime urination.</td></tr>
+      <tr><td>Naproxen</td><td>Aleve / Naprosyn</td><td>220-440mg every 12 hours</td><td>Take with food to avoid stomach upset. Do not exceed 660mg/day.</td></tr>
+      <tr><td>Fluticasone</td><td>Flonase</td><td>1-2 sprays in each nostril daily</td><td>May cause nasal irritation or nosebleeds. Do not exceed the prescribed dosage.</td></tr>
+      <tr><td>Diazepam</td><td>Valium</td><td>2-10mg two to four times a day</td><td>May cause drowsiness or dizziness. Avoid alcohol.</td></tr>
+      <tr><td>Dexamethasone</td><td>Decadron</td><td>0.75-9mg daily</td><td>Take with food to reduce stomach irritation. Can cause increased appetite or weight gain.</td></tr>
+      <tr><td>Tamoxifen</td><td>Nolvadex</td><td>20mg once daily</td><td>May cause hot flashes, nausea, or fatigue. Take with food to reduce stomach irritation.</td></tr>
+      <tr><td>Prednisolone</td><td>Orapred</td><td>5-60mg daily</td><td>Take with food. Do not stop suddenly, tapering may be required.</td></tr>
+      <tr><td>Rivaroxaban</td><td>Xarelto</td><td>10mg once daily</td><td>Take with food. Monitor for signs of bleeding or bruising.</td></tr>
+      <tr><td>Trulicity</td><td>Dulaglutide</td><td>0.75-1.5mg once a week</td><td>Inject subcutaneously. Monitor blood sugar levels regularly.</td></tr>
+      <tr><td>Bupropion</td><td>Wellbutrin / Zyban</td><td>150mg daily</td><td>Take in the morning. Do not stop suddenly. Can cause insomnia or dry mouth.</td></tr>
+      <tr><td>Tadalafil</td><td>Cialis</td><td>10mg before sexual activity or 2.5mg daily</td><td>Avoid alcohol or fatty meals before taking.</td></tr>
+    </tbody>
+  </table>
+
+<script>
+  function filterTable() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const table = document.getElementById('medicineTable');
+    const trs = table.tBodies[0].getElementsByTagName('tr');
+
+    for (let i = 0; i < trs.length; i++) {
+      const td = trs[i].getElementsByTagName('td')[0];
+      if (td) {
+        const txtValue = td.textContent || td.innerText;
+        trs[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
+      }
+    }
+  }
+
+  function addMedicine() {
+    const input = document.getElementById('addInput').value.trim();
+    if (!input) {
+      alert('Please enter medicine data.');
+      return;
+    }
+    // Expecting tab separated: Name<tab>Generic/Brand<tab>Dosage<tab>Considerations
+    const parts = input.split('\t');
+    if(parts.length !== 4){
+      alert('Please enter the data exactly in the format: Name[TAB]Generic/Brand[TAB]Dosage[TAB]Considerations');
+      return;
+    }
+    const [name, generic, dosage, considerations] = parts;
+
+    const tbody = document.getElementById('medicineBody');
+    const newRow = document.createElement('tr');
+
+    [name, generic, dosage, considerations].forEach(text => {
+      const td = document.createElement('td');
+      td.textContent = text;
+      newRow.appendChild(td);
+    });
+
+    tbody.appendChild(newRow);
+    document.getElementById('addInput').value = '';
+    filterTable(); // refresh filter to apply search to new row
+  }
+</script>
+</body>
+</html>
