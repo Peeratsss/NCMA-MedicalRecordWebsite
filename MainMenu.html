@@ -179,6 +179,8 @@
         <option value="Private">Private</option>
       </select>
 
+      <button><a href="medicine.html">Medicine Glossary</a></button>
+
       <button><a href="Login.html">Logout</a></button>
     </div>
   </div>
@@ -381,43 +383,4 @@ Thank you for trusting us with your care.`;
             imageUrls = ["https://via.placeholder.com/300x200.png?text=Infectious"];
             break;
           case "Private":
-            text = "Private Ward: Comfortable private rooms.";
-            imageUrls = ["https://via.placeholder.com/300x200.png?text=Private"];
-            break;
-        }
-
-        content.innerText = text;
-
-        // Clear old images
-        categoryImages.innerHTML = "";
-
-        // Show fallback container for category images
-        imageContainer.style.display = "block";
-
-        // Add new images
-        imageUrls.forEach(url => {
-          const img = document.createElement("img");
-          img.src = url;
-          img.alt = "Category Image";
-          categoryImages.appendChild(img);
-        });
-
-      } else {
-        menuContainer.classList.remove("top-layout");
-        contentContainer.style.display = "none";
-      }
-    }
-
-    window.onload = () => {
-      const select = document.getElementById("mySelect");
-      select.value = "placeholder"; // set to placeholder on load
-      
-      document.getElementById("content").innerText = "Choose a category to view";
-      document.getElementById("categoryImages").innerHTML = "";
-      document.getElementById("content-container").style.display = "none";
-
-      document.getElementById("menuContainer").classList.remove("top-layout");
-    };
-  </script>
-</body>
-</html>
+            text = "Private Ward: Comfortable private rooms
