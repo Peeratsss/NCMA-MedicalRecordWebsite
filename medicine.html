@@ -17,6 +17,7 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       display: block;
+      box-sizing: border-box;
     }
     button {
       padding: 8px 16px;
@@ -27,6 +28,7 @@
       border-radius: 4px;
       cursor: pointer;
       margin-bottom: 20px;
+      transition: background-color 0.3s ease;
     }
     button:hover {
       background-color: #4a0f72;
@@ -48,6 +50,7 @@
       color: white;
       position: sticky;
       top: 0;
+      z-index: 1;
     }
     tr:nth-child(even) {
       background-color: #f9f9f9;
@@ -55,6 +58,16 @@
     #searchInput {
       width: 50%;
       margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    #addInput {
+      width: 100%;
+      max-width: 600px;
+      font-family: monospace;
+      resize: vertical;
     }
   </style>
 </head>
@@ -63,7 +76,7 @@
   
   <input type="text" id="searchInput" placeholder="Search Medicine Name..." onkeyup="filterTable()" />
 
-  <textarea id="addInput" rows="3" placeholder="Add medicine with format: Name  Generic/Brand  Dosage  Considerations (tab separated)"></textarea>
+  <textarea id="addInput" rows="3" placeholder="Add medicine with format: Name[TAB]Generic/Brand[TAB]Dosage[TAB]Considerations"></textarea>
   <button onclick="addMedicine()">Add Medicine</button>
 
   <table id="medicineTable">
