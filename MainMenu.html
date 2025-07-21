@@ -57,11 +57,11 @@
       border-radius: 5px;
       border: 1px solid #333;
       background-color: #f0f0f0;
+      transition: background-color 0.3s ease;
     }
 
-    button a {
-      text-decoration: none;
-      color: black;
+    button:hover, select:hover {
+      background-color: #ddd;
     }
 
     /* Updated content container with sliding effect */
@@ -133,6 +133,8 @@
     /* For other categories fallback */
     #image-container {
       max-width: 300px;
+      grid-column: 1 / 3;
+      display: none;
     }
     #categoryImages img {
       max-width: 100%;
@@ -167,7 +169,7 @@
 <body>
   <div class="menu-container" id="menuContainer">
     <div class="top-controls">
-      <button><a href="Patients.html">Patients</a></button>
+      <button onclick="location.href='Patients.html'">Patients</button>
 
       <select id="mySelect" onchange="updateContent()">
         <option value="placeholder" disabled selected>Categories</option>
@@ -179,9 +181,9 @@
         <option value="Private">Private</option>
       </select>
 
-      <button><a href="medicine.html">Medicine Glossary</a></button>
+      <button onclick="location.href='medicine.html'">Medicine Glossary</button>
 
-      <button><a href="Login.html">Logout</a></button>
+      <button onclick="location.href='Login.html'">Logout</button>
     </div>
   </div>
 
@@ -199,7 +201,7 @@
     <div id="doctor-image"></div>
 
     <!-- fallback container for other categories images -->
-    <div id="image-container" style="grid-column: 1 / 3; display:none;">
+    <div id="image-container">
       <div id="categoryImages"></div>
     </div>
   </div>
@@ -356,31 +358,18 @@ Thank you for trusting us with your care.`;
         doctorImg.alt = "Doctor Image";
         doctorImageDiv.appendChild(doctorImg);
 
-      } else if (selection) {
+      } else {
+        // fallback for other categories or unknown values (optional)
         menuContainer.classList.add("top-layout");
         contentContainer.style.display = "grid";
 
         hospitalImageDiv.innerHTML = "";
         doctorImageDiv.innerHTML = "";
         extraTextDiv.innerText = "";
-        content.innerText = "";
-        imageContainer.style.display = "block";
-
-        let text = "";
-        let imageUrls = [];
-
-        switch (selection) {
-          case "ICU":
-            text = "ICU: Critical care and constant monitoring.";
-            imageUrls = ["https://via.placeholder.com/300x200.png?text=ICU"];
-            break;
-          case "Pediatric":
-            text = "Pediatric Ward: Care for infants and children.";
-            imageUrls = ["https://via.placeholder.com/300x200.png?text=Pediatric"];
-            break;
-          case "Infectious":
-            text = "Infectious Ward: Isolation for contagious diseases.";
-            imageUrls = ["https://via.placeholder.com/300x200.png?text=Infectious"];
-            break;
-          case "Private":
-            text = "Private Ward: Comfortable private rooms
+        content.innerText = "Category not recognized.";
+        imageContainer.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
