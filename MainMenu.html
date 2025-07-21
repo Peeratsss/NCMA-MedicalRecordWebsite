@@ -11,7 +11,7 @@
       margin: 0;
       min-height: 100vh;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       flex-direction: column;
       transition: all 0.5s ease;
@@ -28,6 +28,9 @@
       text-align: center;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease;
+      position: sticky;
+      top: 20px;
+      z-index: 10;
     }
 
     /* Top layout */
@@ -80,10 +83,8 @@
 
     /* Content container with grid layout */
     #content-container {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: relative;
+      top: 150px; /* Adjust this to move the content container lower */
       max-width: 900px;
       width: 90%;
       height: 80%;
@@ -91,7 +92,6 @@
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
       padding: 20px;
-      display: none; /* Initially hidden */
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto auto;
