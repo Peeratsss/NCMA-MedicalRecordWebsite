@@ -1,0 +1,139 @@
+/* styles.css */
+
+/* Basic styles */
+body {
+  background-color: rgba(128, 0, 128, 0.3);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 0.5s ease;
+}
+
+/* Menu container with shadow effect */
+.menu-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 25px 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Top layout */
+.top-layout {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 400px;
+  padding: 15px 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Dropdown and buttons styling */
+.top-controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+button, select {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background-color: #f0f0f0;
+}
+
+/* Content container with grid layout */
+#content-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 900px;
+  width: 90%;
+  height: 80%;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  padding: 20px;
+  display: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  color: #000;
+  font-size: 18px;
+  text-align: left;
+  transition: transform 0.5s ease;
+}
+
+/* Layout for content sections */
+#content {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  white-space: pre-line;
+  align-self: center;
+}
+
+#hospital-image {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  justify-self: center;
+}
+
+#hospital-image img {
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+#extra-text {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  white-space: pre-line;
+  align-self: center;
+  justify-self: center;
+}
+
+#doctor-image {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  justify-self: center;
+  align-self: center;
+}
+
+#doctor-image img {
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+/* Fallback container for other categories */
+#image-container {
+  max-width: 300px;
+}
+
+#categoryImages img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  display: block;
+}
