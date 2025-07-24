@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -179,7 +178,7 @@
         <option value="Contact Us!">Contact Us!</option>
       </select>
 
-      <button><a href="index.html">logout</a></button>
+      <button><a href="index.html">Logout</a></button>
 
       <button class="medicines-button"><a href="medicine.html">Medicines</a></button>
     </div>
@@ -218,9 +217,13 @@
         menuContainer.classList.remove("top-layout");
         contentContainer.style.display = "none";
         content.innerText = "Choose a category to view";
+
+        // Removed menuContainer.style.display line here
       } else {
         menuContainer.classList.add("top-layout");
         contentContainer.style.display = "grid";
+
+        // Removed menuContainer.style.display line here
 
         switch(selection) {
           case "Home":
@@ -259,9 +262,9 @@
             hospitalImageDiv.innerHTML = `<img src="ward1.jpg" alt="Private Ward Image">`;
             doctorImageDiv.innerHTML = `<img src="ward2.jpg" alt="Private Ward Image">`;
             break;
-             case "Contact Us!":
-                content.innerText = "Email at us:<a href="mailto:jlzuniga6657qc@student.fatima.edu.ph">jlzuniga6657qc@student.fatima.edu.ph</a>";
-            extraTextDiv.innerText = "Call us: 123-456-7891 <br>We would appreciate your feedbacks <a href="feedback.html"> Here!</a>";
+          case "Contact Us!":
+            content.innerHTML = `Email at us: <a href="mailto:jlzuniga6657qc@student.fatima.edu.ph">jlzuniga6657qc@student.fatima.edu.ph</a>`;
+            extraTextDiv.innerHTML = `Call us: 123-456-7891 <br>We would appreciate your feedbacks <a href="feedback.html">Here!</a>`;
             break;
           default:
             content.innerText = "Category content is not available.";
