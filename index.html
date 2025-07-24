@@ -175,6 +175,7 @@
         <option value="Pediatric">Pediatric</option>
         <option value="Infectious">Infectious</option>
         <option value="Private">Private</option>
+        <option value="Contact Us!">Contact Us!</option>
       </select>
 
       <button><a href="index.html">Login</a></button>
@@ -242,20 +243,24 @@
           case "Pediatric":
             content.innerText = "Expert care, compassionate healing—our pediatric team specializes in keeping children healthy and happy. From check-ups to treatments, your child’s well-being is our priority.";
             extraTextDiv.innerText = "Child-friendly environment, expert pediatricians—trusted care for your little ones. We provide a safe, nurturing space tailored to children’s unique needs.";
-            hospitalImageDiv.innerHTML = `<img src="pediatric1.jpg" alt="Pediatric Image">`;
-            doctorImageDiv.innerHTML = `<img src="pediatric2.jpg" alt="Pediatric Image">`;
+            hospitalImageDiv.innerHTML = `<img src="ped1.jpg" alt="Pediatric Image">`;
+            doctorImageDiv.innerHTML = `<img src="ped2.jpg" alt="Pediatric Image">`;
             break;
           case "Infectious":
             content.innerText = "Our infectious disease unit is equipped with specialized facilities to manage and treat contagious illnesses effectively and safely.";
             extraTextDiv.innerText = "Strict hygiene protocols, expert medical team, and patient-centered care ensure quick recovery and prevention.";
-            hospitalImageDiv.innerHTML = `<img src="infectious1.jpg" alt="Infectious Disease Image">`;
-            doctorImageDiv.innerHTML = `<img src="infectious2.jpg" alt="Infectious Disease Image">`;
+            hospitalImageDiv.innerHTML = `<img src="inf1.jpg" alt="Infectious Disease Image">`;
+            doctorImageDiv.innerHTML = `<img src="inf2.jpg" alt="Infectious Disease Image">`;
             break;
           case "Private":
             content.innerText = "Enjoy personalized, private healthcare with luxury accommodations and dedicated medical staff.";
             extraTextDiv.innerText = "Your comfort and privacy are paramount. Experience premium services tailored to your needs.";
-            hospitalImageDiv.innerHTML = `<img src="private1.jpg" alt="Private Ward Image">`;
-            doctorImageDiv.innerHTML = `<img src="private2.jpg" alt="Private Ward Image">`;
+            hospitalImageDiv.innerHTML = `<img src="ward1.jpg" alt="Private Ward Image">`;
+            doctorImageDiv.innerHTML = `<img src="ward2.jpg" alt="Private Ward Image">`;
+            break;
+             case "Contact Us!":
+                content.innerText = "Email at us:<a href="mailto:jlzuniga6657qc@student.fatima.edu.ph">jlzuniga6657qc@student.fatima.edu.ph</a>";
+            extraTextDiv.innerText = "Call us: 123-456-7891 <br>We would appreciate your feedbacks <a href="feedback.html"> Here!</a>";
             break;
           default:
             content.innerText = "Category content is not available.";
