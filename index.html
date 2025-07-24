@@ -262,13 +262,15 @@
             hospitalImageDiv.innerHTML = `<img src="ward1.jpg" alt="Private Ward Image">`;
             doctorImageDiv.innerHTML = `<img src="ward2.jpg" alt="Private Ward Image">`;
             break;
-          case "Contact Us!":
-            content.style.textAlign = "center";
-            extraTextDiv.style.textAlign = "center";
-            
-            content.innerHTML = `Email at us: <a href="mailto:jlzuniga6657qc@student.fatima.edu.ph">jlzuniga6657qc@student.fatima.edu.ph</a>`;
-            extraTextDiv.innerHTML = `Call us: 123-456-7891 <br>We would appreciate your feedbacks <a href="feedback.html">Here!</a>`;
-            break;
+        case "Contact Us!":
+  content.innerHTML = `Email at us: <a href="mailto:jlzuniga6657qc@student.fatima.edu.ph">jlzuniga6657qc@student.fatima.edu.ph</a>`;
+  extraTextDiv.innerHTML = `Call us: 123-456-7891 <br>We would appreciate your feedbacks <a href="feedback.html">Here!</a>`;
+  imageContainer.style.display = "block";
+  categoryImages.innerHTML = `
+    <img src="rate1.jpg" alt="Rate Image 1">
+    <img src="rate2.jpg" alt="Rate Image 2">`;
+  break;
+
           default:
             content.innerText = "Category content is not available.";
             extraTextDiv.innerText = "";
