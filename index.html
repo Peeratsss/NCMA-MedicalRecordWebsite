@@ -136,10 +136,9 @@
         <option value="Pediatric">Pediatric</option>
         <option value="Infectious">Infectious</option>
         <option value="Private">Private</option>
-        <option value="Rehabilitation">Rehabilitation</option>
+        <option value="Contact us">Contact us!</option>
       </select>
 
-      <input type="text" id="customTextInput" readonly value="Contact us at: jlzuniga6657qc@student.fatima.edu.ph | Feedback: Click Here!" onclick="window.location.href='feedback.html'" />
 
       <button><a href="Login.html">Login</a></button>
       <button class="medicines-button"><a href="medicine.html">Medicines</a></button>
@@ -165,8 +164,8 @@
       customTextInput.style.display = "none";
 
       switch (selection) {
-        case "Rehabilitation":
-          content.innerText = "Welcome to the Rehabilitation Ward.\nWe offer personalized physical therapy and recovery programs.";
+        case "Contact us":
+          content.innerText = "Contact us @ <a href"mailto:jlzuniga6657qc@student.fatima.edu.ph">jlzuniga6657qc@student.fatima.edu.ph</a>\nFeedbacks <a href="feedback.html">Here</a>.";
           customTextInput.style.display = "block";
           break;
         case "Home":
