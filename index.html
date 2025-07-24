@@ -17,6 +17,7 @@
     }
 
     .menu-container {
+	  position: relative; 
       width: 100%;
       max-width: 400px;
       padding: 25px 20px;
@@ -25,7 +26,7 @@
       border-radius: 10px;
       text-align: center;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
+     transition: all 0.5s ease;
     }
 
     .top-layout {
@@ -40,6 +41,8 @@
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       z-index: 1000;
+	  transition: all 0.5s ease;
+
     }
 
     .top-controls {
@@ -163,6 +166,13 @@
   </style>
 </head>
 <body>
+<div id="introText" style="margin-bottom: 20px; text-align: center; font-size: 18px; padding: 10px; max-width: 700px;">
+  <strong>Hello and Welcome!</strong><br>
+  I'm Jasper Zuñiga from BSN 23. This website introduces a complete Healthcare System. <br>
+  Please select a category to learn more.
+</div>
+
+
   <div class="menu-container" id="menuContainer">
     <div class="top-controls">
       <button><a href="Patients.html">Patients</a></button>
@@ -194,95 +204,94 @@
     </div>
   </div>
 
-  <script>
-    function updateContent() {
-      const selection = document.getElementById("mySelect").value;
-      const content = document.getElementById("content");
-      const menuContainer = document.getElementById("menuContainer");
-      const contentContainer = document.getElementById("content-container");
-      const hospitalImageDiv = document.getElementById("hospital-image");
-      const doctorImageDiv = document.getElementById("doctor-image");
-      const extraTextDiv = document.getElementById("extra-text");
-      const imageContainer = document.getElementById("image-container");
-      const categoryImages = document.getElementById("categoryImages");
+<script>
+  function updateContent() {
+  const selection = document.getElementById("mySelect").value;
+  const content = document.getElementById("content");
+  const menuContainer = document.getElementById("menuContainer");
+  const contentContainer = document.getElementById("content-container");
+  const hospitalImageDiv = document.getElementById("hospital-image");
+  const doctorImageDiv = document.getElementById("doctor-image");
+  const extraTextDiv = document.getElementById("extra-text");
+  const imageContainer = document.getElementById("image-container");
+  const categoryImages = document.getElementById("categoryImages");
+  const introText = document.getElementById("introText");
 
-      // Clear images and texts
-      hospitalImageDiv.innerHTML = "";
-      doctorImageDiv.innerHTML = "";
-      extraTextDiv.innerText = "";
-      categoryImages.innerHTML = "";
-      imageContainer.style.display = "none";
+  // Clear previous images and texts
+  hospitalImageDiv.innerHTML = "";
+  doctorImageDiv.innerHTML = "";
+  extraTextDiv.innerText = "";
+  categoryImages.innerHTML = "";
+  imageContainer.style.display = "none";
 
-      if (selection === "placeholder") {
-        menuContainer.classList.remove("top-layout");
-        contentContainer.style.display = "none";
-        content.innerText = "Choose a category to view";
+  if (selection === "placeholder") {
+    // Show intro text and reset layout
+    introText.style.display = "block";
+    contentContainer.style.display = "none";
+    content.innerText = "Choose a category to view";
+    menuContainer.classList.remove("top-layout");
+  } else {
+    // Hide intro text, show content container and move menu up
+    introText.style.display = "none";
+    contentContainer.style.display = "grid";
+    menuContainer.classList.add("top-layout");
 
-        // Removed menuContainer.style.display line here
-      } else {
-        menuContainer.classList.add("top-layout");
-        contentContainer.style.display = "grid";
-
-        // Removed menuContainer.style.display line here
-
-        switch(selection) {
-          case "Home":
-            content.innerText = "Welcome to Medical City Hospital!\nProviding compassionate care with cutting-edge technology.\nYour health and well-being are our top priorities.\nThank you for trusting us with your care.";
-            extraTextDiv.innerText = "Our Doctors and Nurses at Medical City are the best at their fields.";
-            hospitalImageDiv.innerHTML = `<img src="Hospital1.jpg" alt="Hospital Image">`;
-            doctorImageDiv.innerHTML = `<img src="doc1.jpg" alt="Doctor Image">`;
-            break;
-          case "General":
-            content.innerText = "Our General Ward is designed for your recovery and well-being.\nWhether you're recovering from illness, surgery, or need monitored care, our compassionate medical team and modern facilities ensure you receive the best treatment in a safe, hygienic environment.";
-            extraTextDiv.innerText = "Why Choose Our General Ward?\n\n✔ 24/7 Expert Care – Skilled doctors and nurses dedicated to your recovery.\n✔ Spacious & Clean Rooms – Comfortable beds, proper ventilation, and infection-free zones.\n✔ Affordable Rates – Quality healthcare without financial stress.\n✔ Nutritious Meals – Tailored diets to speed up your healing.\n✔ Family Support – Flexible visiting hours and attentive staff.";
-            hospitalImageDiv.innerHTML = `<img src="nurse1.jpg" alt="Hospital Image">`;
-            doctorImageDiv.innerHTML = `<img src="nurse2.jpg" alt="Doctor Image">`;
-            break;
-          case "ICU":
-            content.innerText = "Expert care, compassionate healing—our medical team is dedicated to your health around the clock. Trust skilled professionals who put your well-being first.";
-            extraTextDiv.innerText = "Advanced treatment, personalized care—your health is our priority. Experience excellence in medical services with state-of-the-art facilities.";
-            hospitalImageDiv.innerHTML = `<img src="work1.jpg" alt="ICU Image">`;
-            doctorImageDiv.innerHTML = `<img src="work2.jpg" alt="ICU Image">`;
-            break;
-          case "Pediatric":
-            content.innerText = "Expert care, compassionate healing—our pediatric team specializes in keeping children healthy and happy. From check-ups to treatments, your child’s well-being is our priority.";
-            extraTextDiv.innerText = "Child-friendly environment, expert pediatricians—trusted care for your little ones. We provide a safe, nurturing space tailored to children’s unique needs.";
-            hospitalImageDiv.innerHTML = `<img src="ped1.jpg" alt="Pediatric Image">`;
-            doctorImageDiv.innerHTML = `<img src="ped2.jpg" alt="Pediatric Image">`;
-            break;
-          case "Infectious":
-            content.innerText = "Our infectious disease unit is equipped with specialized facilities to manage and treat contagious illnesses effectively and safely.";
-            extraTextDiv.innerText = "Strict hygiene protocols, expert medical team, and patient-centered care ensure quick recovery and prevention.";
-            hospitalImageDiv.innerHTML = `<img src="inf1.jpg" alt="Infectious Disease Image">`;
-            doctorImageDiv.innerHTML = `<img src="inf2.jpg" alt="Infectious Disease Image">`;
-            break;
-          case "Private":
-            content.innerText = "Enjoy personalized, private healthcare with luxury accommodations and dedicated medical staff.";
-            extraTextDiv.innerText = "Your comfort and privacy are paramount. Experience premium services tailored to your needs.";
-            hospitalImageDiv.innerHTML = `<img src="ward1.jpg" alt="Private Ward Image">`;
-            doctorImageDiv.innerHTML = `<img src="ward2.jpg" alt="Private Ward Image">`;
-            break;
-        case "Contact Us!":
-            content.innerHTML = `Email at us: <a href="mailto:jlzuniga6657qc@student.fatima.edu.ph">jlzuniga6657qc@student.fatima.edu.ph</a>`;
-            extraTextDiv.innerHTML = `Call us: 123-456-7891 <br>We would appreciate your feedbacks <a href="feedback.html">Here!</a>`;
-           hospitalImageDiv.innerHTML = `<img src="rate1.png" alt="Rate us1">`;
-            doctorImageDiv.innerHTML = `<img src="rate2.png" alt="Rate us2">`;
-              break;
-
-          default:
-            content.innerText = "Category content is not available.";
-            extraTextDiv.innerText = "";
-            hospitalImageDiv.innerHTML = "";
-            doctorImageDiv.innerHTML = "";
-            break;
-        }
-      }
+    switch (selection) {
+      case "Home":
+        content.innerText = "Welcome to Medical City Hospital!\nProviding compassionate care with cutting-edge technology.\nYour health and well-being are our top priorities.\nThank you for trusting us with your care.";
+        extraTextDiv.innerText = "Our Doctors and Nurses at Medical City are the best at their fields.";
+        hospitalImageDiv.innerHTML = `<img src="Hospital1.jpg" alt="Hospital Image">`;
+        doctorImageDiv.innerHTML = `<img src="doc1.jpg" alt="Doctor Image">`;
+        break;
+      case "General":
+        content.innerText = "Our General Ward is designed for your recovery and well-being.\nWhether you're recovering from illness, surgery, or need monitored care, our compassionate medical team and modern facilities ensure you receive the best treatment in a safe, hygienic environment.";
+        extraTextDiv.innerText = "Why Choose Our General Ward?\n\n✔ 24/7 Expert Care – Skilled doctors and nurses dedicated to your recovery.\n✔ Spacious & Clean Rooms – Comfortable beds, proper ventilation, and infection-free zones.\n✔ Affordable Rates – Quality healthcare without financial stress.\n✔ Nutritious Meals – Tailored diets to speed up your healing.\n✔ Family Support – Flexible visiting hours and attentive staff.";
+        hospitalImageDiv.innerHTML = `<img src="nurse1.jpg" alt="Hospital Image">`;
+        doctorImageDiv.innerHTML = `<img src="nurse2.jpg" alt="Doctor Image">`;
+        break;
+      case "ICU":
+        content.innerText = "Expert care, compassionate healing—our medical team is dedicated to your health around the clock. Trust skilled professionals who put your well-being first.";
+        extraTextDiv.innerText = "Advanced treatment, personalized care—your health is our priority. Experience excellence in medical services with state-of-the-art facilities.";
+        hospitalImageDiv.innerHTML = `<img src="work1.jpg" alt="ICU Image">`;
+        doctorImageDiv.innerHTML = `<img src="work2.jpg" alt="ICU Image">`;
+        break;
+      case "Pediatric":
+        content.innerText = "Expert care, compassionate healing—our pediatric team specializes in keeping children healthy and happy. From check-ups to treatments, your child’s well-being is our priority.";
+        extraTextDiv.innerText = "Child-friendly environment, expert pediatricians—trusted care for your little ones. We provide a safe, nurturing space tailored to children’s unique needs.";
+        hospitalImageDiv.innerHTML = `<img src="ped1.jpg" alt="Pediatric Image">`;
+        doctorImageDiv.innerHTML = `<img src="ped2.jpg" alt="Pediatric Image">`;
+        break;
+      case "Infectious":
+        content.innerText = "Our infectious disease unit is equipped with specialized facilities to manage and treat contagious illnesses effectively and safely.";
+        extraTextDiv.innerText = "Strict hygiene protocols, expert medical team, and patient-centered care ensure quick recovery and prevention.";
+        hospitalImageDiv.innerHTML = `<img src="inf1.jpg" alt="Infectious Disease Image">`;
+        doctorImageDiv.innerHTML = `<img src="inf2.jpg" alt="Infectious Disease Image">`;
+        break;
+      case "Private":
+        content.innerText = "Enjoy personalized, private healthcare with luxury accommodations and dedicated medical staff.";
+        extraTextDiv.innerText = "Your comfort and privacy are paramount. Experience premium services tailored to your needs.";
+        hospitalImageDiv.innerHTML = `<img src="ward1.jpg" alt="Private Ward Image">`;
+        doctorImageDiv.innerHTML = `<img src="ward2.jpg" alt="Private Ward Image">`;
+        break;
+      case "Contact Us!":
+        content.innerHTML = `Email at us: <a href="mailto:jlzuniga6657qc@student.fatima.edu.ph">jlzuniga6657qc@student.fatima.edu.ph</a>`;
+        extraTextDiv.innerHTML = `Call us: 123-456-7891 <br>We would appreciate your feedbacks <a href="feedback.html">Here!</a>`;
+        hospitalImageDiv.innerHTML = `<img src="rate1.png" alt="Rate us1">`;
+        doctorImageDiv.innerHTML = `<img src="rate2.png" alt="Rate us2">`;
+        break;
+      default:
+        content.innerText = "Category content is not available.";
+        break;
     }
+  }
+}
 
-    // On initial page load, content container is hidden
-    window.onload = () => {
-      document.getElementById("content-container").style.display = "none";
-    };
-  </script>
+
+  // On initial page load, content container is hidden
+  window.onload = () => {
+    document.getElementById("content-container").style.display = "none";
+  };
+</script>
+
 </body>
 </html>
